@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-cloud-consul-producer-2
+  namespace: spring-cloud
+  labels:
+    app: spring-cloud-consul-producer-2
+spec:
+  ports:
+    - name: 8502-tcp
+      protocol: TCP
+      port: 8502
+      targetPort: 8502
+  selector:
+    app: spring-cloud-consul-producer-2
+    deploymentconfig: spring-cloud-consul-producer-2
+  #type: ClusterIP
+  type: NodePort
