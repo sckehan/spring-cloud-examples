@@ -1,0 +1,31 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: spring-cloud-consul-producer
+  namespace: spring-cloud
+  labels:
+    app: spring-cloud-consul-producer
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  test: false
+  selector:
+    app: spring-cloud-consul-producer
+    deploymentconfig: spring-cloud-consul-producer
+  template:
+    metadata:
+      labels:
+        app: spring-cloud-consul-producer
+        deploymentconfig: spring-cloud-consul-producer
+    spec:
+      containers:
+        - name: spring-cloud-consul-producer
+          image: >-
+            docker.io/sckehan/spring-cloud-consul-producer:latest
+          ports:
+            - containerPort: 8501
+              protocol: TCP
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
