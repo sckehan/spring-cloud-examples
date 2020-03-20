@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: spring-cloud-consul-producer
-  namespace: devops
+  namespace: spring-cloud
   labels:
     app: spring-cloud-consul-producer
 spec:
